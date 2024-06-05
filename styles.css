@@ -1,4 +1,10 @@
+#calculator-container {
+    font-size: 36px;
+}
+
 button {
-    width: 5em;
-    height: 5em;
+    font-size: 36px;
+    width: 2em;
+    height: 2em;
+    margin: 0px;
 }
