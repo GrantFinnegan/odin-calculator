@@ -85,10 +85,19 @@ function handleButtonPress (token) {
     }
 
     //update display on page
-    display.textContent = displayText.firstNumber + ' ' +
-        displayText.operator + ' ' +
-        displayText.secondNumber +
-        displayText.cursor;
+    if (isNaN(displayText.firstNumber) ||
+        displayText.firstNumber === Infinity ||
+        displayText.firstNumber === -Infinity
+        ) {
+        display.textContent = "not so fast!";
+        clearCalculatorState();
+    }
+    else{
+        display.textContent = displayText.firstNumber + ' ' +
+            displayText.operator + ' ' +
+            displayText.secondNumber +
+            displayText.cursor;
+    }
 }
 
 function clearCalculatorState (){
