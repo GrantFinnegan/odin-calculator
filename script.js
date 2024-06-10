@@ -84,7 +84,7 @@ function handleButtonPress (token) {
         setOperator(token);
     }
 
-
+    //update display on page
     display.textContent = displayText.firstNumber + ' ' +
         displayText.operator + ' ' +
         displayText.secondNumber +
@@ -145,4 +145,37 @@ function appendDot () {
         displayText.secondNumber.replace('.','');
         displayText.secondNumber += '.';
     }
+}
+
+//event listener assignments section
+
+//map of button id's and the tokens they should invoke
+const buttonIdTokenMap = {
+    "zero-button" : '0',
+    "one-button": '1',
+    "two-button" : '2',
+    "three-button" : '3',
+    "four-button" : '4',
+    "five-button" : '5',
+    "six-button" : '6',
+    "seven-button" : '7',
+    "eight-button" : '8',
+    "nine-button" : '9',
+    
+    "addition-button" : ADDITION_OPERATOR,
+    "subtraction-button" : SUBTRACTION_OPERATOR,
+    "multiplication-button" : MULTIPLICATION_OPERATOR,
+    "division-button" : DIVISION_OPERATOR,
+
+    "enter-button" : EVALUATE_TOKEN,
+    "clear-button" : CLEAR_TOKEN,
+}
+
+//add event listeners to all buttons corresponding to
+//tokens defined in buttonIdTokenMap
+let buttonList = document.querySelectorAll('button');
+for (let btn of buttonList) {
+    btn.addEventListener("click", 
+        () => handleButtonPress(buttonIdTokenMap[btn.id])
+    );
 }
