@@ -3,11 +3,12 @@ const ADDITION_OPERATOR = '+';
 const SUBTRACTION_OPERATOR = '-';
 const MULTIPLICATION_OPERATOR = 'x';
 const DIVISION_OPERATOR = '/';
+const DOT_TOKEN = '.';
 const CLEAR_TOKEN = 'C';
 const EVALUATE_TOKEN = 'E';
 
 const operatorTokens = [ADDITION_OPERATOR, SUBTRACTION_OPERATOR, MULTIPLICATION_OPERATOR, DIVISION_OPERATOR];
-const digitTokens = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'];
+const digitTokens = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
 function add(a, b) {
     //Number.parseFloat used to ensure + operator performs addition rather
@@ -69,12 +70,14 @@ function handleButtonPress (token) {
         evaluateCalculatorState();
     }
 
-    //digits and dots are added to first number if no operator has entered
+    //digits are added to first number if no operator has entered
     //and to the second if an operator has already been entered
     else if (digitTokens.includes(token)) {
         appendDigit(token)
     }
-
+    else if (token === DOT_TOKEN) {
+        appendDot();
+    }
     //operator token handling
     //after one operator is entered, subsequent ones over write it
     else if (operatorTokens.includes(token)) {
@@ -125,4 +128,21 @@ function appendDigit (token) {
     displayText.operator === '' ? 
     displayText.firstNumber += token :
     displayText.secondNumber += token; 
+}
+
+//appends a dot to current number
+//removes any prior dot in the number
+//This behavior ensures both only one dot, and lets the 
+//user recover from having mis-clicked the dot button early
+function appendDot () {
+    if (displayText.operator === '') {
+        displayText.firstNumber = 
+        displayText.firstNumber.replace('.', '');
+        displayText.firstNumber += '.';
+    }
+    else {
+        displayText.secondNumber = 
+        displayText.secondNumber.replace('.','');
+        displayText.secondNumber += '.';
+    }
 }
