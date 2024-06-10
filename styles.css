@@ -1,5 +1,6 @@
 #calculator-container {
     font-size: 36px;
+    width: min-content;
 }
 
 button {
@@ -7,4 +8,13 @@ button {
     width: 2em;
     height: 2em;
     margin: 4px;
+}
+
+.btn-row {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+#enter-button {
+    flex-grow: 1;
 }

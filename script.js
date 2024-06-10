@@ -161,6 +161,8 @@ const buttonIdTokenMap = {
     "seven-button" : '7',
     "eight-button" : '8',
     "nine-button" : '9',
+
+    "dot-button": DOT_TOKEN,
     
     "addition-button" : ADDITION_OPERATOR,
     "subtraction-button" : SUBTRACTION_OPERATOR,
