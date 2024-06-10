@@ -68,13 +68,11 @@ function handleButtonPress (token) {
     else if (token === EVALUATE_TOKEN) {
         evaluateCalculatorState();
     }
-    
+
     //digits and dots are added to first number if no operator has entered
     //and to the second if an operator has already been entered
     else if (digitTokens.includes(token)) {
-        displayText.operator === '' ? 
-            displayText.firstNumber += token :
-            displayText.secondNumber += token; 
+        appendDigit(token)
     }
 
     //operator token handling
@@ -118,4 +116,13 @@ function evaluateCalculatorState () {
 //sets the operator in calculator expression
 function setOperator(token) {
     displayText.operator = token;
+}
+
+//adds the entered digit to the number currently being written
+//i.e. the first number if no operator has been set yet, and the second if the
+//operator has been set
+function appendDigit (token) {
+    displayText.operator === '' ? 
+    displayText.firstNumber += token :
+    displayText.secondNumber += token; 
 }
