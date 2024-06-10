@@ -61,26 +61,14 @@ const display = document.querySelector("#display");
 function handleButtonPress (token) {
     //clear display
     if (token === CLEAR_TOKEN) {
-        displayText.firstNumber = '';
-        displayText.secondNumber = '';
-        displayText.operator = '';
+        clearCalculatorState();
     }
+
     //evaluate
     else if (token === EVALUATE_TOKEN) {
-        //ensure all fields are full
-        let isExpressionComplete = 
-            displayText.firstNumber &&
-            displayText.operator !== '' &&
-            displayText.secondNumber !== '';
-        if (isExpressionComplete) {
-            displayText.firstNumber = operate(
-                displayText.operator,
-                displayText.firstNumber,
-                displayText.secondNumber);
-            displayText.operator = '';
-            displayText.secondNumber = '';
-        }
+        evaluateCalculatorState();
     }
+    
     //digits and dots are added to first number if no operator has entered
     //and to the second if an operator has already been entered
     else if (digitTokens.includes(token)) {
@@ -99,4 +87,26 @@ function handleButtonPress (token) {
         displayText.operator + ' ' +
         displayText.secondNumber +
         displayText.cursor;
+}
+
+function clearCalculatorState (){
+    displayText.firstNumber = '';
+    displayText.secondNumber = '';
+    displayText.operator = '';
+}
+
+function evaluateCalculatorState () {
+            //ensure all fields are full
+            let isExpressionComplete = 
+            displayText.firstNumber &&
+            displayText.operator !== '' &&
+            displayText.secondNumber !== '';
+        if (isExpressionComplete) {
+            displayText.firstNumber = operate(
+                displayText.operator,
+                displayText.firstNumber,
+                displayText.secondNumber);
+            displayText.operator = '';
+            displayText.secondNumber = '';
+        }
 }
