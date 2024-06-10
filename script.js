@@ -76,10 +76,11 @@ function handleButtonPress (token) {
             displayText.firstNumber += token :
             displayText.secondNumber += token; 
     }
+
     //operator token handling
     //after one operator is entered, subsequent ones over write it
     else if (operatorTokens.includes(token)) {
-        displayText.operator = token;
+        setOperator(token);
     }
 
 
@@ -95,9 +96,12 @@ function clearCalculatorState (){
     displayText.operator = '';
 }
 
+//evaluate expression held in calculator state and store it as the firstNumber.
+//Clears operator and second number, leaving only the result
+//this both displays the result and allows the user to easily further operate on the result
 function evaluateCalculatorState () {
-            //ensure all fields are full
-            let isExpressionComplete = 
+        //ensure all fields are full
+        let isExpressionComplete = 
             displayText.firstNumber &&
             displayText.operator !== '' &&
             displayText.secondNumber !== '';
@@ -109,4 +113,9 @@ function evaluateCalculatorState () {
             displayText.operator = '';
             displayText.secondNumber = '';
         }
+}
+
+//sets the operator in calculator expression
+function setOperator(token) {
+    displayText.operator = token;
 }
